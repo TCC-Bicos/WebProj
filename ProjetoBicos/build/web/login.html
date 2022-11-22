@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style-login.css">
+        <title> Login </title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+    <body>
+        <section class="h-100 gradient-form" style="background-color: #eee;">
+            <div class="container py-5 h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-xl-10">
+                        <div class="card rounded-3 text-black ">
+                            <div class="row g-0 ">
+                                <div class="col-lg-6 ">
+                                    <div class="card-body p-md-5 mx-md-4 ">
+
+                                        <div class="text-center">
+                                            <img src="img/bg-logo.png" class="logol" alt="logo">
+                                        </div>
+
+                                        <form method="post" action="loguser.jsp" id="formulario">
+
+                                            <div class="form-outline mb-4">
+                                                <label class="form-label" for="form2Example11">Email</label>
+                                                <input type="email" name="email" id="form2Example11" class="form-control" placeholder="Email" />
+                                            </div>
+
+                                            <div class="form-outline mb-4">
+                                                <label class="form-label" for="form2Example22">Senha</label>
+                                                <input type="password" id="form2Example22" name="senha" class="form-control" placeholder="Senha" />
+                                                <a class="text-muted" href="#!">Esqueceu a sua senha?</a>
+                                            </div>
+
+                                            <div class="text-center pt-1 mb-5 pb-1">
+                                                  <input type="submit" value="Entrar" class="btn btn-primary">
+                                            </div>
+
+                                            <div class="d-flex align-items-center justify-content-center pb-4 df-r">
+                                                <p class="mb-0 me-2 ">Não tem uma conta?</p>
+                                                <button class="create "> <a href="cad.html"> Criar Conta </a> </button>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-center pb-4 df-r">
+                                                <p class="mb-0 me-2 ">Entrar como Freelancer?</p>
+                                                <button class="create "> <a href="login-free.html"> Login Freelancer </a> </button>
+                                            </div>
+
+                                        </form>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 d-flex align-items-center bd-grad d-n">
+                                    <div class="text-white px-3 py-4 p-md-5 mx-md-4 d-n">
+                                    <div class="form-header">
+                                        <div class="title">
+                                            <h1> Login Cliente </h1>
+                                        </div>
+                                    </div>
+                                        <p> <br>Na Bicos, cada usuário pode ter até duas contas, uma para requisitar a execução de projetos (Cliente), e outra para a realização de projetos (Freelancer). Na conta aberta de Cliente, é possivel apenas requisitar projetos, portanto, serão apenas exibidos Freelancers disponiveis. <br><br>Caso queira criar uma conta com a intenção de realizar projetos,e receber por isso, clique no botão abaixo e configure sua conta como Freelancer. </p>
+                                        <button class="btn btn-primary conf-frlc"> <a class="btn-conffr" href="cad-free.html"> Configurar Freelancer </a> </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

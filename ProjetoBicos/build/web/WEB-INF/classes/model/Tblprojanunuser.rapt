@@ -1,0 +1,15 @@
+model/Tblsaldo_.java
+model/Tblticket_.java
+model/Tblcoment_.java
+model/Tblfreelancer_.java
+model/Tblpagamentoprojuser_.java
+model/TblnotifU_.java
+model/Tblport_.java
+model/Tblprojanunfr_.java
+model/Tblanunfr_.java
+model/Tbltiposervico_.java
+model/TblnotiuF_.java
+model/Tblprojanunuser_.java
+model/Tblusuario_.java
+model/Tblchatprojanunuser_.java
+model/Tblchatticket_.java

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="ProjetoBicosPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>model.Tblprojanunuser</class>
+    <class>model.Tblcoment</class>
+    <class>model.Tblpagamentoprojfr</class>
+    <class>model.Tblanunuser</class>
+    <class>model.TblnotifU</class>
+    <class>model.Tblchatprojanunfr</class>
+    <class>model.Tbltiposervico</class>
+    <class>model.Tblanunfruser</class>
+    <class>model.Tblsaldo</class>
+    <class>model.Tblanunfr</class>
+    <class>model.Tblchatticket</class>
+    <class>model.Tblusuario</class>
+    <class>model.Tblanunuserfr</class>
+    <class>model.Tblcargo</class>
+    <class>model.Tblpagamentoprojuser</class>
+    <class>model.Tblfuncionario</class>
+    <class>model.Tblport</class>
+    <class>model.Tblticket</class>
+    <class>model.Tblprojanunfr</class>
+    <class>model.Tblfreelancer</class>
+    <class>model.TblnotiuF</class>
+    <class>model.Tblstatusprojanunuser</class>
+    <class>model.Tblchatprojanunuser</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sistema?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="dr34q1cv"/>
+    </properties>
+  </persistence-unit>
+</persistence>

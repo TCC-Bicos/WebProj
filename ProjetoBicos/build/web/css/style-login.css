@@ -1,0 +1,115 @@
+.bd-rd {
+    border-radius:50px;
+}
+
+@media only screen and (max-width: 550px){
+    .df-r{
+        flex-direction: column;
+    }
+
+    .create{
+        margin: 10px 0!important;
+        border: none!important;
+        text-decoration: underline;
+    }
+}
+
+@media only screen and (max-width: 990px){
+    .d-n{
+        display:none;
+    }
+}
+
+.df-r {
+    flex-direction:column;
+}
+
+html{
+    background-color: #eee;
+}
+
+.text-center img {
+    height: auto;
+    width:100%;
+    margin-bottom:60px;
+    display: block;
+}
+
+.create {
+    margin:25px 0;
+    background:none;
+    color:#286DED;
+    border:solid 1px #286DED;
+    border-radius:20px;
+    width:150px;
+    height:40px;
+}
+
+.btn-conffr{
+   color:white;
+   text-decoration: none;
+}
+
+.create:hover {
+    background:#286DED;
+    border:none;
+    color:white;
+}
+
+.button {
+    width:100px;
+    height:50px;
+    border-radius:20px;
+    border:none;
+    background: #286DED;
+    color:white;
+}
+
+.button:hover {
+    border:solid 1px #286DED;
+    background: none;
+    color:#286DED;
+}
+
+.bd-grad {
+    background: linear-gradient(to right, #1660e8, #1044a8);
+}
+
+.button a {
+    color:white;
+    text-decoration:none;
+}
+
+.button a:hover {
+    color:#286DED;
+}
+
+.create a {
+    color:#286DED;
+    text-decoration:none;
+}
+
+.create a:hover {
+    color:white;
+}
+
+.conf-frlc{
+    margin-top: 80px;
+    color:white!important;
+    background-color: transparent!important;
+    border: solid 1px white!important;
+    text-decoration:none;
+    border-radius: 20px!important;
+}
+
+@media (min-width: 768px) {
+.gradient-form {
+height: 100vh !important;
+}
+}
+@media (min-width: 769px) {
+.gradient-custom-2 {
+border-top-right-radius: .3rem;
+border-bottom-right-radius: .3rem;
+}
+}

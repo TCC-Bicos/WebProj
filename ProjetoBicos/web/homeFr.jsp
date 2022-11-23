@@ -22,7 +22,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
         <!--CSS-->
-        <link rel="stylesheet" href="css/style-home.css" />
+        <link rel="stylesheet" href="css/style-homeFr.css" />
     </head>
     <body>
         <%

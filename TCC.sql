@@ -78,11 +78,11 @@ ALTER TABLE TblTipoServico auto_increment = 1;
 CREATE TABLE IF NOT EXISTS `sistema`.`TblAnunUser` (
   `idAnunUser` INT NOT NULL AUTO_INCREMENT,
   `idUser` INT NOT NULL,
-  `NomeServ` VARCHAR(45) NOT NULL,
+  `NomeServ` VARCHAR(100) NOT NULL,
   `TituloAnunUser` VARCHAR(20) NOT NULL,
   `DescAnunUser` VARCHAR(255) NOT NULL,
   `PrecoAnunUser` DOUBLE NOT NULL,
-  `RequisitosAnunUser` VARCHAR(45) NOT NULL,
+  `RequisitosAnunUser` VARCHAR(255) NOT NULL,
   `ImgAnunUser` VARCHAR(200),
   `StatusAnunUser` TINYINT(1),
   `DataAnunUser` DATE,
@@ -190,48 +190,43 @@ CREATE TABLE IF NOT EXISTS `sistema`.`TblFreelancer` (
   PRIMARY KEY (`idFr`))
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
--- Table `sistema`.`TblOfertaF_U`
+-- Table `sistema`.`TblAnunUserFr`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sistema`.`TblOfertaF_U` (
-  `idOfertaFU` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `sistema`.`TblAnunUserFr` (
+  `idAnunUserFr` INT NOT NULL AUTO_INCREMENT,
   `idFr` INT NOT NULL,
   `idAnunUser` INT NOT NULL,
-  `PropostaOfertaFU` VARCHAR(255) NOT NULL,
-  `PrecoOfertaFU` DOUBLE NOT NULL,
-  `ImagemOfertaFU` VARCHAR(100) NULL,
-  `DataOfertaFU` DATE NOT NULL,
-  `StatusOfertaFU` TINYINT(1) NULL,
-  PRIMARY KEY (`idOfertaFU`),
-  INDEX `fk_TblOfertaF_U_TblFreelancer1_idx` (`idFr` ASC) VISIBLE,
-  INDEX `fk_TblOfertaF_U_TblAnunUser1_idx` (`idAnunUser` ASC) VISIBLE,
-  CONSTRAINT `fk_TblOfertaF_U_TblFreelancer1`
+  `NomeAnunUser` VARCHAR(255) NULL,
+  `DescAnunUser` VARCHAR(255) NULL,
+  PRIMARY KEY (`idAnunUserFr`),
+  INDEX `fk_TblAnunUserFr_TblFreelancer1_idx` (`idFr` ASC) VISIBLE,
+  INDEX `fk_TblAnunUserFr_TblAnunUser1_idx` (`idAnunUser` ASC) VISIBLE,
+  CONSTRAINT `fk_TblAnunUserFr_TblFreelancer1`
     FOREIGN KEY (`idFr`)
     REFERENCES `sistema`.`TblFreelancer` (`idFr`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_TblOfertaF_U_TblAnunUser1`
+  CONSTRAINT `fk_TblAnunUserFr_TblAnunUser1`
     FOREIGN KEY (`idAnunUser`)
     REFERENCES `sistema`.`TblAnunUser` (`idAnunUser`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
 -- Table `sistema`.`TblProjAnunUser`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sistema`.`TblProjAnunUser` (
   `idProjAnunUser` INT NOT NULL AUTO_INCREMENT,
-  `idOfertaFU` INT NOT NULL,
+  `idAnunUserFr` INT NOT NULL,
   `DataInicioProjAnunUser` DATE NULL,
   `DataFinalProjAnunUser` DATE NULL,
   PRIMARY KEY (`idProjAnunUser`),
-  INDEX `fk_TblProjAnunUser_TblOfertaF_U1_idx` (`idOfertaFU` ASC) VISIBLE,
-  CONSTRAINT `fk_TblProjAnunUser_TblOfertaF_U1`
-    FOREIGN KEY (`idOfertaFU`)
-    REFERENCES `sistema`.`TblOfertaF_U` (`idOfertaFU`)
+  INDEX `fk_TblProjAnunUser_TblAnunUserFr_idx` (`idAnunUserFr` ASC) VISIBLE,
+  CONSTRAINT `fk_TblProjAnunUser_TblAnunUserFr`
+    FOREIGN KEY (`idAnunUserFr`)
+    REFERENCES `sistema`.`TblAnunUserFr` (`idAnunUserFr`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -242,14 +237,14 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sistema`.`TblNotiF_U` (
   `idNotiFU` INT NOT NULL AUTO_INCREMENT,
-  `idOfertaFU` INT NOT NULL,
+  `idAnunUserFr` INT NOT NULL,
   `TipoNotiFU` VARCHAR(45) NULL,
   `MensagemNotiFU` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`idNotiFU`),
-  INDEX `fk_TblNotiF_U_TblOfertaF_U1_idx` (`idOfertaFU` ASC) VISIBLE,
-  CONSTRAINT `fk_TblNotiF_U_TblOfertaF_U1`
-    FOREIGN KEY (`idOfertaFU`)
-    REFERENCES `sistema`.`TblOfertaF_U` (`idOfertaFU`)
+  INDEX `fk_TblNotiF_U_TblAnunUserFr1_idx` (`idAnunUserFr` ASC) VISIBLE,
+  CONSTRAINT `fk_TblNotiF_U_TblAnunUserFr1`
+    FOREIGN KEY (`idAnunUserFr`)
+    REFERENCES `sistema`.`TblAnunUserFr` (`idAnunUserFr`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -349,26 +344,21 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `sistema`.`TblOfertaU_F`
+-- Table `sistema`.`TblAnunFrUser`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sistema`.`TblOfertaU_F` (
-  `idOfertaUF` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `sistema`.`TblAnunFrUser` (
+  `idAnunFrUser` INT NOT NULL AUTO_INCREMENT,
   `idAnunFr` INT NOT NULL,
   `idUser` INT NOT NULL,
-  `PropostaOfertaUF` VARCHAR(255) NOT NULL,
-  `ImagemOfertaUF` VARCHAR(100) NULL,
-  `DataOfertaUF` DATE NOT NULL,
-  `StatusOfertaUF` TINYINT(1) NULL,
-  `PrecoOfertaUF` DOUBLE NULL,
-  PRIMARY KEY (`idOfertaUF`),
-  INDEX `fk_TblOfertaU_F_TblAnunFr1_idx` (`idAnunFr` ASC) VISIBLE,
-  INDEX `fk_TblOfertaU_F_TblUsuario1_idx` (`idUser` ASC) VISIBLE,
-  CONSTRAINT `fk_TblOfertaU_F_TblAnunFr1`
+  PRIMARY KEY (`idAnunFrUser`),
+  INDEX `fk_TblAnunFrUser_TblAnunFr1_idx` (`idAnunFr` ASC) VISIBLE,
+  INDEX `fk_TblAnunFrUser_TblUsuario1_idx` (`idUser` ASC) VISIBLE,
+  CONSTRAINT `fk_TblAnunFrUser_TblAnunFr1`
     FOREIGN KEY (`idAnunFr`)
     REFERENCES `sistema`.`TblAnunFr` (`idAnunFr`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_TblOfertaU_F_TblUsuario1`
+  CONSTRAINT `fk_TblAnunFrUser_TblUsuario1`
     FOREIGN KEY (`idUser`)
     REFERENCES `sistema`.`TblUsuario` (`idUser`)
     ON DELETE NO ACTION
@@ -381,14 +371,14 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sistema`.`TblNotiU_F` (
   `idNotiUF` INT NOT NULL AUTO_INCREMENT,
-  `idOfertaUF` INT NOT NULL,
+  `idAnunFrUser` INT NOT NULL,
   `TipoNotiUF` VARCHAR(45) NULL,
   `MensagemNotiUF` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`idNotiUF`),
-  INDEX `fk_TblNotiU_F_TblOfertaU_F1_idx` (`idOfertaUF` ASC) VISIBLE,
-  CONSTRAINT `fk_TblNotiU_F_TblOfertaU_F1`
-    FOREIGN KEY (`idOfertaUF`)
-    REFERENCES `sistema`.`TblOfertaU_F` (`idOfertaUF`)
+  INDEX `fk_TblNotiU_F_TblAnunFrUser1_idx` (`idAnunFrUser` ASC) VISIBLE,
+  CONSTRAINT `fk_TblNotiU_F_TblAnunFrUser`
+    FOREIGN KEY (`idAnunFrUser`)
+    REFERENCES `sistema`.`TblAnunFrUser` (`idAnunFrUser`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -399,14 +389,14 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sistema`.`TblProjAnunFr` (
   `idProjAnunFr` INT NOT NULL AUTO_INCREMENT,
-  `idOfertaUF` INT NOT NULL,
+  `idAnunFrUser` INT NOT NULL,
   `DataInicioProjAnunFr` DATE NULL,
   `DataFinalProjAnunFr` DATE NULL,
   PRIMARY KEY (`idProjAnunFr`),
-  INDEX `fk_TblProjAnunFr_TblOfertaU_F1_idx` (`idOfertaUF` ASC) VISIBLE,
-  CONSTRAINT `fk_TblProjAnunFr_TblOfertaU_F1`
-    FOREIGN KEY (`idOfertaUF`)
-    REFERENCES `sistema`.`TblOfertaU_F` (`idOfertaUF`)
+  INDEX `fk_TblProjAnunFr_TblAnunFrUser1_idx` (`idAnunFrUser` ASC) VISIBLE,
+  CONSTRAINT `fk_TblProjAnunFrUser_TblAnunFrUser1`
+    FOREIGN KEY (`idAnunFrUser`)
+    REFERENCES `sistema`.`TblAnunFrUser` (`idAnunFrUser`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -417,14 +407,14 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sistema`.`TblStatusProjAnunFr` (
   `idStatusProjAnunFr` INT NOT NULL AUTO_INCREMENT,
-  `idProjAnunFr` INT NOT NULL,
+  `idProjAnunFrUser` INT NOT NULL,
   `StatusProjAnunFr` TINYINT(1) NULL,
   `DiasAtrasadosStatusProjAnunFr` INT NULL,
   PRIMARY KEY (`idStatusProjAnunFr`),
-  INDEX `fk_TblStatusProjAnunFr_TblProjAnunFr1_idx` (`idProjAnunFr` ASC) VISIBLE,
-  CONSTRAINT `fk_TblStatusProjAnunFr_TblProjAnunFr1`
-    FOREIGN KEY (`idProjAnunFr`)
-    REFERENCES `sistema`.`TblProjAnunFr` (`idProjAnunFr`)
+  INDEX `fk_TblStatusProjAnunFr_TblProjAnunFrUser1_idx` (`idProjAnunFrUser` ASC) VISIBLE,
+  CONSTRAINT `fk_TblStatusProjAnunFr_TblProjAnunFrUser1`
+    FOREIGN KEY (`idProjAnunFrUser`)
+    REFERENCES `sistema`.`TblProjAnunFrUser` (`idProjAnunFrUser`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -435,14 +425,14 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sistema`.`TblPagamentoProjFr` (
   `idPagamentoProjFr` INT NOT NULL,
-  `idOfertaUF` INT NOT NULL,
+  `idAnunFrUser` INT NOT NULL,
   `ValorPagamento` DOUBLE NULL,
   `DataPagamento` DATE NULL,
   PRIMARY KEY (`idPagamentoProjFr`),
-  INDEX `fk_TblPagamentoProjFr_TblOfertaU_F1_idx` (`idOfertaUF` ASC) VISIBLE,
-  CONSTRAINT `fk_TblPagamentoProjFr_TblOfertaU_F1`
-    FOREIGN KEY (`idOfertaUF`)
-    REFERENCES `sistema`.`TblOfertaU_F` (`idOfertaUF`)
+  INDEX `fk_TblPagamentoProjFr_TblAnunFrUser1_idx` (`idAnunFrUser` ASC) VISIBLE,
+  CONSTRAINT `fk_TblPagamentoProjFr_TblAnunFrUser1`
+    FOREIGN KEY (`idAnunFrUser`)
+    REFERENCES `sistema`.`TblAnunFrUser` (`idAnunFrUser`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -453,14 +443,14 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sistema`.`TblPagamentoProjUser` (
   `idPagamentoProjUser` INT NOT NULL,
-  `idOfertaFU` INT NOT NULL,
+  `idAnunUserFr` INT NOT NULL,
   `ValorPagamento` DOUBLE NULL,
   `DataPagamento` DATE NULL,
   PRIMARY KEY (`idPagamentoProjUser`),
-  INDEX `fk_TblPagamentoProjUser_TblOfertaF_U1_idx` (`idOfertaFU` ASC) VISIBLE,
-  CONSTRAINT `fk_TblPagamentoProjUser_TblOfertaF_U1`
-    FOREIGN KEY (`idOfertaFU`)
-    REFERENCES `sistema`.`TblOfertaF_U` (`idOfertaFU`)
+  INDEX `fk_TblPagamentoProjUser_TblAnunUserFr1_idx` (`idAnunUserFr` ASC) VISIBLE,
+  CONSTRAINT `fk_TblPagamentoProjUser_TblAnunUserFr1`
+    FOREIGN KEY (`idAnunUserFr`)
+    REFERENCES `sistema`.`TblAnunUserFr` (`idAnunUserFr`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -502,23 +492,6 @@ CREATE TABLE IF NOT EXISTS `sistema`.`TblChatProjAnunFr` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
-INSERT INTO TblTipoServico (NomeServ, CategoriaServ) VALUES
-('Design de Logos', 'Design'),
-('Design de Interface', 'Design'),
-('Web Design', 'Design'),
-('Design Thinking', 'Design'),
-('Brand Design', 'Design'),
-('Design de Produto', 'Design'),
-('Design Gráfico', 'Design'),
-('Programador Web', 'Programador'),
-('Programador Desktop', 'Programador'),
-('Programador Mobile', 'Programador'),
-('Programador de Jogos', 'Programador'),
-('Programador de Sistemas Embarcados', 'Programador'),
-('Editor de Vídeos', 'Editor'),
-('Editor de Áudio', 'Editor'),
-('Editor de Imagens', 'Editor');
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
